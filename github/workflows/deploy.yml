@@ -33,3 +33,10 @@ jobs:
 
       - name: Validate Terraform
         run: terraform validate -no-color
+
+      - name: Terraform Plan
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: terraform apply -input=false tfplan
