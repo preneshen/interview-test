@@ -15,16 +15,16 @@ resource "aws_kms_key" "mykey" {
 # }
 
 resource "aws_instance" "web-server1" {
-   
-  ami = "ami-0b6d9d3d33ba97d99"
-  for_each = var.instance_type
+
+  ami           = "ami-0b6d9d3d33ba97d99"
+  for_each      = var.instance_type
   instance_type = each.value
   tags = {
     Environment = var.env
-    Name = each.key
+    Name        = each.key
   }
 
-  depends_on = [ aws_vpc.demo_vpc ]
+  depends_on = [aws_vpc.demo_vpc]
 }
 
 resource "aws_vpc" "demo_vpc" {
@@ -42,7 +42,7 @@ resource "aws_vpc" "demo_vpc" {
 
 resource "aws_subnet" "demo_subnet" {
   # count      = length(var.cidr_block)
-  for_each = var.cidr_block
+  for_each   = var.cidr_block
   vpc_id     = aws_vpc.demo_vpc.id
   cidr_block = each.value
 
@@ -52,7 +52,7 @@ resource "aws_subnet" "demo_subnet" {
 
   lifecycle {
     prevent_destroy = false
-    ignore_changes = [ tags ]
+    ignore_changes  = [tags]
   }
 
 }
@@ -100,7 +100,7 @@ resource "aws_security_group" "allow_tls" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
-  for_each = var.cidr_block
+  for_each          = var.cidr_block
   security_group_id = aws_security_group.allow_tls.id
   cidr_ipv4         = each.value
   from_port         = 443

@@ -9,15 +9,15 @@ variable "env" {
 }
 
 variable "cidr_block" {
-    type = map(string)
-    default = {}
-    nullable = false
-  
- 
+  type     = map(string)
+  default  = {}
+  nullable = false
+
+
 }
 
-variable "instance_type"{
-    type = map(string)
-    default = {}
-    nullable = false
+variable "instance_type" {
+  type     = map(string)
+  default  = {}
+  nullable = false
 }
