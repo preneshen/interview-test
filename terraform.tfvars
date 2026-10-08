@@ -8,5 +8,5 @@ cidr_block = {
 instance_type = {
   "webserver1" = "t2.micro"
   "webserver2" = "t2.small"
-  "webserver3"   = "t2.micro"
+  "webserver3" = "t2.micro"
 }
