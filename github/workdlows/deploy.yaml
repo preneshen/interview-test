@@ -1,0 +1,32 @@
+name: Terrafrom CI/CD
+
+on:
+  push:
+    branches:
+      -main
+  pull_request:
+    branches:  
+      -main
+
+  jobs:
+    terrafrom:
+      name: 'Terrafrom Lint, Security Check, and Deploy'
+      runs-on: ubuntu-latest
+
+    steps:
+
+    - name: 'Checkout Github resposity'
+      uses: actions/checkout@v2
+      
+    - name: 'Terraform Format'
+      run: terrafrom fmt
+
+    - name: 'Terraform Validate'
+      run: terrafrom validate
+
+    - name: 'Terraform Plan'
+      run: terrafrom plan
+
+    - name: 'Terraform apply'
+      run: terrafrom apply -auto-approve
+        
