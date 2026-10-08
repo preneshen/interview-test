@@ -14,7 +14,7 @@ resource "aws_kms_key" "mykey" {
 #     }
 # }
 
-resource "aws_instance" "web-server1" {
+resource "aws_instance" "web-server" {
 
   ami           = "ami-0b6d9d3d33ba97d99"
   for_each      = var.instance_type
